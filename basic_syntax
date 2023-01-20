@@ -1,0 +1,12 @@
+
+-most linux commands follow this syntax
+command [options...] [arguments...]
+
+multiple options in one command:
+
+for example:
+ls -l
+ls -r
+ls -l -r
+ls -lr
+ls -rl

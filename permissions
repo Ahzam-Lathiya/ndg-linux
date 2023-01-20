@@ -1,0 +1,111 @@
+File Permissions:
+
+Three different classes of users:
+
+.The File owner
+.Group Users
+.All others
+
+Change File ownership through 'chown' 'chgrp'
+
+Three File Permissions types apply to each of users
+
+-Read Permission
+-Write Permission
+-Execute permission
+
+To read File permission
+
+for example:
+-rw-r--r--
+
+first character '-' indicates the file type is a readable file.
+
+-Remaining 9 characters are divided into 3 triplets
+
+The first triplet is the permissions for the file owner
+The second triplet is the permissions for the Group members
+The third triplet is the permissions for all other members
+
+'r' means read
+'w' means write
+'x' means execute
+
+
+chmod:
+Only root, the file owner, or user with sudo privileges can change the permissions of a file
+
+The command can accept one or more files and/or directories separated by space as arguments.
+
+Permissions can be specified using a symbolic mode, numeric mode, or a reference file.
+
+
+Symbolic Mode:
+chmod [OPTIONS] [ugoa…][-+=]perms…[,…] FILE...
+
+The first set of flags ([ugoa…]), users flags, defines the users’ classes for which the permissions to the file are changed.
+
+u - The file owner.
+g - The users who are members of the group.
+o - All other users.
+a - All users, identical to ugo.
+
+When the users’ flag is omitted, it defaults to a.
+
+The second set of flags ([-+=]), the operation flags, defines whether the permissions are to be removed, added, or set:
+
+- Removes the specified permission
++ Adds the specified permission
+= Changes current permissions to the specified permissions. If no permissions are defined, then all permissions from the user group are removed
+
+The permissions (perms...) are explicitly set using either zero or one or more of the following letters: r, w, x, X, s, and t
+
+When setting permissions for more than one user classes ([,…]), use commas (without spaces) to separate the symbolic modes.
+
+
+- Give the members of the group permission to execute the file, but not to read and write to it:
+
+$ chmod g=x filename
+
+- Remove the write permission for all users:
+
+$ chmod a-w filename
+
+- Remove the read, write, and execute permission for all users except the file’s owner:
+
+$ chmod og-rwx filename
+
+$ chmod og= filename
+
+- Recursively remove the execute permission for other users:
+
+$ chmod -R o-x dirname
+
+- Give read, write and execute permission to the file’s owner, read permissions to the file’s group, and no permissions to all other users:
+
+$ chmod u=rwx,g=r,o= filename
+
+Numeric Method:
+chmod [OPTIONS] NUMBER FILE...
+
+When using 3 digit system. The first digit is for owner, second digit is for group members, third digit for everyone else.
+
+r (read) = 4
+w (write) = 2
+x (execute) = 1
+no permissions = 0
+
+Owner: rwx=4+2+1=7
+Group: r-x=4+0+1=5
+Others: r-x=4+0+0=4
+
+When the 4 digits number is used, the first digit has the following meaning:
+
+setuid=4
+setgid=2
+sticky=1
+no changes = 0
+
+You can check the file’s permissions in the numeric notation using the stat command:
+
+stat -c "%a" file_name

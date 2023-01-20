@@ -1,0 +1,16 @@
+Basic Syntax:
+cd [options] [path]
+
+Shortcuts
+
+The '..' Characters
+Regardless of which directory you are in, .. always represents one directory higher relative to the current directory, sometimes referred to as the parent directory.
+
+The '.' Character
+Regardless of which directory you are in, the . character always represents your current directory.
+
+The '~' Character
+The home directory of the current user is represented by the ~ character. As stated above, you always begin as the sysadmin user, whose home is located at /home/sysadmin
+
+The '/' Character
+The root directory shortcut regardless of wherever you are in the File system.
